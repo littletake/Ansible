@@ -1,0 +1,37 @@
+---
+# file: roles/setup_docker/tasks/main.yml
+# Docker, docker-composeのインストール
+
+# Docker
+- name: add docker gpg key #docker公式のGPG公開鍵をインストール
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add apt repository #aptリポジトリの設定
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+
+- name: install docker-ce # dockerの無償版をインストール(Community Edition)
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: yes
+
+# pip
+- name: install python-apt # --check用パッケージのインストール
+  apt:
+    name: python-apt
+    state: latest
+
+- name: install pip # pipのインストール
+  apt:
+    name: python3-pip
+    state: latest
+
+# docker-compose
+- name: install docker-py, docker-compose # install docker-compose from pip
+  pip:
+    name: ["docker", "docker-compose", "pyYAML"]
+    state: latest

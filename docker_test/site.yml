@@ -1,0 +1,12 @@
+---
+# main ansible_file
+- hosts: math_machine_normal
+  become: yes
+  user: ubuntu
+
+  roles:
+    # Install docker, docker-compose, docker-py
+    - setup_docker
+
+    # copy directory and do docker
+    - test

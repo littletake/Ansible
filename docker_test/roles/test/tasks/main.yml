@@ -1,0 +1,17 @@
+---
+# file: roles/test/tasks/main.yml
+# ファイルのコピーとdockerのテスト
+
+# copy
+- name: copy files
+  copy:
+    src: files/
+    dest: /home/ubuntu/workspace
+    owner: root
+    group: root
+    mode: '0644'
+
+# docker_container
+- name: do docker_container
+  docker_container:
+    

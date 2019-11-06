@@ -1,0 +1,9 @@
+- hosts: server
+  user: ubuntu
+  become: yes
+  tasks:
+    - name: install packages from apt
+      apt: 
+        name:
+          - ruby
+          - git

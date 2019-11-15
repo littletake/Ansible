@@ -27,11 +27,10 @@
 
 - name: install pip # pipのインストール
   apt:
-    name: python3-pip
+    name: python-pip
     state: latest
 
-# docker-compose
-- name: install docker-py, docker-compose # install docker-compose from pip
+- name: install docker-py
   pip:
-    name: ["docker", "docker-compose", "pyYAML"]
+    name: "docker"
     state: latest
